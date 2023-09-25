@@ -1,0 +1,41 @@
+<h3>Listado de héroes</h3>
+
+<!-- without ngFor directive -->
+<!-- <ul class="mt-2 list-group">
+    <li class="list-group-item">Spiderman</li>
+    <li class="list-group-item">Ironman</li>
+    <li class="list-group-item">Hulk</li>
+    <li class="list-group-item">Thor</li>
+    <li class="list-group-item">She Hulk</li>
+</ul> -->
+<div *ngIf="deletedHero; else nothingWasDeleted">
+    <h3>Héroe borrado <small class="text-danger">{{ deletedHero }}</small></h3>
+</div>
+
+<ng-template #nothingWasDeleted>
+    <h3>No ha borrado nada</h3>
+</ng-template>
+
+
+
+<button 
+    class="btn btn-outline-danger"
+    (click)="removeLastHero()"
+    *ngIf="heroNames.length > 0">
+    Borrar último héroe
+</button>
+
+<button 
+    class="btn btn-outline-danger"
+    (click)="resetHeroNames()">
+    Reset
+</button>
+
+<ul class="mt-2 list-group">
+    <li 
+        class="list-group-item" 
+        *ngFor="let name of heroNames"> 
+        {{ name }}
+    </li>
+</ul>
+
